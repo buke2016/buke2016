@@ -15,6 +15,6 @@ def swap_color(color: list[int]) -> list[int]:
     color[n-1] = lastcolor
     return color
 
-my_color = [2,0,2,1,1,0]
+my_color = [2, 0, 2, 1, 1, 0]
 swap_color(my_color)
 print(my_color)
