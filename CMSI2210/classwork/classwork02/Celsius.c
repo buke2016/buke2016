@@ -1,0 +1,1 @@
+let f = parseFloat( promt("Enter a temperature in degrees Fahrenheit: alert ( f + "degrees F is " + ((( f - 32 ) * 5) / 9) + " degrees C. ");
