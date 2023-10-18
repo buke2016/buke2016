@@ -123,7 +123,7 @@ int main() {
    while( /* what two conditions are needed here? */ ) {
      // Print word with underscores for unguessed letters
       printf( "\n  The word is now: " );
-      for( int j = 0; j < N; ++j ) {
+      for( int j = 0; j < N; ++j ) {     //No need to show mask[j] == TRUE
         if(mask[j]) {
           printf('%c', words[index][j]);
         } else {
