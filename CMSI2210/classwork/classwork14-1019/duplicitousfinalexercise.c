@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX_FILENAME_LENGTH 256
+#define MAX_FILENAME_LENGTH 200
 
 int main(int argc, char *argv[]) {
     char filename[MAX_FILENAME_LENGTH];
@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Step 6: Read the first line from the file
-    char line[256];
+    char line[200];
     if (fgets(line, sizeof(line), input_file) == NULL) {
         printf("Error reading the first line from the input file\n");
         fclose(input_file);

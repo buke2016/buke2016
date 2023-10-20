@@ -1,0 +1,1 @@
+output_file = fopen(output_filename, "w");
