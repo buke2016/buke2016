@@ -89,9 +89,10 @@ int main( int argc, char * argv[] ) {
   /*
    * read the first line of the input file to get the readline count
    */
-    if (fgets(line, sizeof(line), filename) == NULL) {
+   FILE *output_file = fopen("output.txt", "w");
+    if (fgets(filename, sizeof(filename), input_file) == NULL) {
         printf("Error reading the first line from the input file\n");
-        fclose(filename);
+        fclose(output_file);
         return 1;
     }
   /*
@@ -104,15 +105,14 @@ int main( int argc, char * argv[] ) {
    * read that many lines from the input file and
    *  write them to the output file
    */
-    FILE *output_file = fopen(input_file, "w");
-    for (int j = 0; j < blocksize; j++) {
-            if (fgets(line, sizeof(line), input_file) == NULL) {
+      for (int j = 0; j < blocksize; j++) {
+            if (fgets(filename, sizeof(filename), input_file) == NULL) {
                 printf("Error reading from input file\n");
                 fclose(input_file);
                 fclose(output_file);
                 return 1;
             }
-            fprintf(output_file, "%s", line);
+            fprintf(output_file, "%s", filename);
         }
         fprintf(output_file, "\n");
     }
