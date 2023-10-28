@@ -1,0 +1,56 @@
+C:\Users\bukep\AppData\Local\bin\NASM>cd C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>rename helloworld.nasm.txt sayhello2
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>nasm -fwin32 sayhello2.nasm
+nasm: fatal: unable to open input file `sayhello2.nasm' No such file or directory
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>nasm -fwin32 helloworld.nasm
+nasm: fatal: unable to open input file `helloworld.nasm' No such file or directory
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>dir
+ Volume in drive C is Windows
+ Volume Serial Number is 64EF-DC6B
+
+ Directory of C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026
+
+10/27/2023  11:03 AM    <DIR>          .
+10/26/2023  02:58 PM    <DIR>          ..
+10/26/2023  03:07 PM                70 HelloWorld.s
+10/26/2023  03:38 PM            40,622 sayhello.exe
+10/26/2023  03:34 PM               531 Sayhello.nasm
+10/26/2023  04:51 PM             1,415 Sayhello.nasm inclasswork.txt
+10/26/2023  03:39 PM             2,786 Sayhello.nasm procedure.txt
+10/27/2023  10:57 AM               531 Sayhello.nasm.txt
+10/26/2023  03:37 PM               274 sayhello.obj
+10/27/2023  10:57 AM               776 sayhello2
+               8 File(s)         47,005 bytes
+               2 Dir(s)  961,872,457,728 bytes free
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>nasm -fwin32 helloworld.s
+helloworld.s:1: error: parser: instruction expected
+helloworld.s:2: error: parser: instruction expected
+helloworld.s:3: warning: label alone on a line without a colon might be in error [-w+label-orphan]
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>nasm -fwin32 sayhello2.nasm
+nasm: fatal: unable to open input file `sayhello2.nasm' No such file or directory
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>rename sayhello2.nasm.txt sayhello2.nasm
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>nasm -fwin32 sayhello2.nasm
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>gcc sayhello2.obj -o sayhello2.exe
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>sayhello2
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>
+
+
+
+combined instruction:
+
+C:\Users\bukep\AppData\Local\bin\NASM>cd C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>nasm -fwin32 sayhello2.nasm && gcc sayhello2.obj -o sayhello2.exe && sayhello2
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>

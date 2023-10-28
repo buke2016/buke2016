@@ -1,0 +1,32 @@
+Copy this textfile -here i copied windowsversion file - and paste it in the notepad file AND saves it as "sayhello.nasm"
+
+[global   _main                ; this is the main entry point
+         extern   _printf              ; external code from "C" library
+
+         section  .text                ; text [code] segment
+
+_main:
+          push    message              ; windows is different! push instead of lea
+          call    _printf              ; call printf()
+          add     esp, 4               ; we 'pushed' so we restore stack pointer
+
+          ret                          ; return to O/S
+
+message:  db  'Hello, World', 0x0A, 0x00 ]
+
+ Open your nasm and browse for the saved file[sayhello.nasm] using cd
+
+C:\Users\bukep\AppData\Local\bin\NASM>cd C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026
+
+[using the windowsversion -here use your macversion one- of: nasm -fwin32 sayhello.nasm
+      gcc sayhello.obj -o sayhello.exe
+      sayhello]
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>rename  Sayhello.nasm.txt  Sayhello.nasm
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>nasm -fwin32 sayhello.nasm
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>gcc -m32 sayhello.obj -o sayhello
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>sayhello
+Hello, World

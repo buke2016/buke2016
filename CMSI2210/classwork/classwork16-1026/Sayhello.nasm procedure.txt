@@ -1,0 +1,62 @@
+Microsoft Windows [Version 10.0.22621.2428]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\bukep\AppData\Local\bin\NASM>load
+'load' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\bukep\AppData\Local\bin\NASM>cd C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>nasm sayhello.nasm
+nasm: fatal: unable to open input file `sayhello.nasm' No such file or directory
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>dir
+ Volume in drive C is Windows
+ Volume Serial Number is 64EF-DC6B
+
+ Directory of C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026
+
+10/26/2023  03:35 PM    <DIR>          .
+10/26/2023  02:58 PM    <DIR>          ..
+10/26/2023  03:07 PM                70 HelloWorld.s
+10/26/2023  03:34 PM               531 Sayhello.nasm.txt
+               2 File(s)            601 bytes
+               2 Dir(s)  961,448,312,832 bytes free
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>rename  Sayhello.nasm.txt
+The syntax of the command is incorrect.
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>rename  Sayhello.nasm.txt  Sayhello.nasm
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>nasm sayhello.nasm
+sayhello.nasm:8: error: binary output format does not support external references
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>nasm -fwin32 Sayhello.nasm.txt sayhello.nasm
+Sayhello.nasm.txt: fatal: more than one input file specified: sayhello.nasm
+
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>nasm -fwin32 sayhello.nasm
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>gcc -m32 sayhello.o -o sayhello
+gcc: error: sayhello.o: No such file or directory
+gcc: fatal error: no input files
+compilation terminated.
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>dir
+ Volume in drive C is Windows
+ Volume Serial Number is 64EF-DC6B
+
+ Directory of C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026
+
+10/26/2023  03:37 PM    <DIR>          .
+10/26/2023  02:58 PM    <DIR>          ..
+10/26/2023  03:07 PM                70 HelloWorld.s
+10/26/2023  03:34 PM               531 Sayhello.nasm
+10/26/2023  03:37 PM               274 sayhello.obj
+               3 File(s)            875 bytes
+               2 Dir(s)  961,506,156,544 bytes free
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>gcc -m32 sayhello.obj -o sayhello
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork16-1026>sayhello
+Hello, World
