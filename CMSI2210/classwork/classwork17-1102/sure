@@ -1,0 +1,154 @@
+section .data
+section .bss
+section .text
+global main
+
+main:
+    ; Output a message
+    mov edx, msg
+    mov ecx, msglen
+    mov ebx, 1
+    mov eax, 4
+    int 0x80
+
+    ; Push flags onto the stack
+    pushf
+
+    ; Pop the flags into a register (e.g., EAX)
+    pop eax
+
+    ; Display the flags
+    mov edx, eax
+    mov ecx, 2
+    mov ebx, 1
+    mov eax, 4
+    int 0x80
+
+    ; Exit the program
+    mov ebx, 0
+    mov eax, 1
+    int 0x80
+
+section .data
+msg db "Flags: ", 0
+msglen equ $ - msg
+
+
+
+
+# check carryflag
+
+
+section .data
+section .bss
+section .text
+global main
+
+main:
+    ; Output a message
+    mov edx, msg
+    mov ecx, msglen
+    mov ebx, 1
+    mov eax, 4
+    int 0x80
+
+start_loop:
+    ; Push flags onto the stack
+    pushf
+
+    ; Add two numbers (e.g., 65535 and 1) to test for carry
+    mov eax, 65535
+    add eax, 1
+
+    ; Push the updated flags onto the stack
+    pushf
+
+    ; Pop the flags into a register (e.g., EBX)
+    pop ebx
+
+    ; Test the carry flag (bit 0 in EBX)
+    test ebx, 1
+    jnz carry_set  ; Jump if carry flag is set
+
+    ; Continue the loop if carry flag is not set
+    jmp start_loop
+
+carry_set:
+    ; Display the carry flag message
+    mov edx, carry_msg
+    mov ecx, carry_msglen
+    mov ebx, 1
+    mov eax, 4
+    int 0x80
+
+    ; Exit the program
+    mov ebx, 0
+    mov eax, 1
+    int 0x80
+
+section .data
+msg db "Flags: ", 0
+msglen equ $ - msg
+
+carry_msg db "Carry flag is set!", 0
+carry_msglen equ $ - carry_msg
+
+
+
+
+# test program and add overflagflow
+
+
+section .data
+section .bss
+section .text
+global main
+
+main:
+    ; Output a message
+    mov edx, msg
+    mov ecx, msglen
+    mov ebx, 1
+    mov eax, 4
+    int 0x80
+
+start_loop:
+    ; Push flags onto the stack
+    pushf
+
+    ; Add two large numbers (e.g., 2147483647 and 1) to test for overflow
+    mov eax, 2147483647
+    add eax, 1
+
+    ; Push the updated flags onto the stack
+    pushf
+
+    ; Pop the flags into a register (e.g., EBX)
+    pop ebx
+
+    ; Test the overflow flag (bit 11 in EBX)
+    test ebx, 2048
+    jnz overflow_set  ; Jump if overflow flag is set
+
+    ; Continue the loop if overflow flag is not set
+    jmp start_loop
+
+overflow_set:
+    ; Display the overflow flag message
+    mov edx, overflow_msg
+    mov ecx, overflow_msglen
+    mov ebx, 1
+    mov eax, 4
+    int 0x80
+
+    ; Exit the program
+    mov ebx, 0
+    mov eax, 1
+    int 0x80
+
+section .data
+msg db "Flags: ", 0
+msglen equ $ - msg
+
+overflow_msg db "Overflow flag is set!", 0
+overflow_msglen equ $ - overflow_msg

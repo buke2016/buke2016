@@ -1,0 +1,53 @@
+; Display the value of the flags register
+global _start
+
+section .text
+_start:
+    ; Push the flags register onto the stack
+    pushf
+
+    ; Pop the flags register into a register
+    pop eax
+
+    ; Display the value of the flags register
+    printf("The flags register value is: %x\n", eax)
+
+    ; Add two numbers
+    mov eax, 10
+    add eax, 20
+
+    ; Display the value of the flags register again
+    pushf
+    pop eax
+    printf("The flags register value after adding two numbers is: %x\n", eax)
+
+    ; Loop, performing another addition, until a carry flag message is displayed
+loop:
+    add eax, 10
+
+    ; Check the carry flag
+    jc carry
+
+    ; Keep looping until the carry flag is set
+    jmp loop
+
+carry:
+    ; Display the carry flag message
+    printf("Carry flag set!\n")
+
+    ; Check the overflow flag
+    jo overflow
+
+    ; Keep looping until the overflow flag is set
+    jmp loop
+
+overflow:
+    ; Display the overflow flag message
+    printf("Overflow flag set!\n")
+
+    ; Exit the program
+    mov eax, 1
+    int 0x80
+
+section .data
+format: db "%x\n", 0

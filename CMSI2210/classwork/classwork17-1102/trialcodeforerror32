@@ -1,0 +1,65 @@
+section .data
+    message_flags db "Flags: ", 0
+    carry_message db "Carry flag set", 0
+    overflow_message db "Overflow flag set", 0
+
+section .bss
+    hStdout resb 4
+
+section .text
+global _start
+
+extern GetStdHandle, WriteFile, ExitProcess
+
+_start:
+    ; Get a handle to the standard output (console)
+    push -11  ; STD_OUTPUT_HANDLE
+    call GetStdHandle
+    mov [hStdout], eax
+
+    ; Output flags
+    push message_flags
+    push eax  ; hStdout
+    call PrintMessage
+
+    ; Display flags
+    pushf
+    push eax  ; hStdout
+    call PrintFlags
+
+    ; Exit
+    call ExitProcess
+
+PrintMessage:
+    ; Input: EAX - Handle
+    ;        EDX - Pointer to the message
+    ; Output: None
+
+    pushad
+    push 0         ; lpNumberOfBytesWritten
+    push 11        ; nNumberOfBytesToWrite
+    push edx       ; lpBuffer
+    push eax       ; hFile
+    call WriteFile
+    popad
+    ret
+
+PrintFlags:
+    ; Input: EAX - Flags
+    ;        EDX - Handle
+    ; Output: None
+
+    pushad
+    push eax
+    push edx
+    call PrintMessage
+    popad
+    ret
+
+ExitProcess:
+    ; Input: None
+    ; Output: None
+
+    push 0
+    call ExitProcess
+
