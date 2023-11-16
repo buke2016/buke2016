@@ -1,0 +1,7 @@
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork17-1102>rename starsPC.txt starsPC.nasm
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork17-1102>nasm -fwin32 starsPC.nasm
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork17-1102>gcc -m32 starsPC.obj -o starsPC.exe
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork17-1102>
