@@ -1,0 +1,13 @@
+nasm -f win32 fibonacci.asm -o fibonacci.obj
+
+gcc -m32 -o fibonacci.exe fibonacci.obj
+
+./fibonacci.exe
+--------------------------------------------------
+gdb ./fibonacci.exe
+break fibonacci_loop
+run
+
+set $ecx = 20
+
+continue

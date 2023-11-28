@@ -1,0 +1,67 @@
+ global   _main
+                  extern   _printf
+
+                  section  .text
+
+   _main:
+               push     ebx               ; we have to save this
+
+   begin:
+               xor      eax, eax          ; zero out eax
+               mov      eax, [year]       ; eax is the year to investigate
+               and      eax, 0x0000FFFF   ; mask off upper two bytes of 32-bit
+
+   check4:
+               and      eax, 0x00000003   ; remainder of div by 4 using AND
+               cmp      eax, 0x0          ; check if divided evenly by 4
+               jnz      printno           ;  if not, NOPE! if yes, check 100
+
+   check100:
+               xor      eax, eax          ; zero out eax
+               mov      eax, [year]       ; eax is the year to investigate
+               and      eax, 0x0000FFFF   ; mask off upper two bytes of 32-bit
+               mov      ecx, 0x00000064   ; to divide by 100
+               xor      edx, edx          ; zero out edx where remainder goes
+               div      dword ecx         ; divide by 100, remainder in edx
+               cmp      edx, 0x0          ; check if divided evenly by 100
+               jnz      printyes          ; if not, LEAPYEAR!  if yes, check 400
+
+   check400:
+               xor      eax, eax          ; zero out eax
+               mov      eax, [year]       ; eax is the year to investigate
+               and      eax, 0x0000FFFF   ; mask off upper two bytes of 32-bit
+               mov      ecx, 0x00000190   ; to divide by 400
+               xor      edx, edx          ; zero out edx where remainder goes
+               div      dword ecx         ; divide by 400, remainder in edx
+               cmp      edx, 0x0          ; check if divided evenly by 400
+               jz       printyes          ; YEP!
+
+   printno:
+               xor      eax, eax          ; zero out eax
+               mov      eax, [year]       ; eax is the year to investigate
+               and      eax, 0x0000FFFF   ; mask off upper two bytes of 32-bit
+               push     eax
+               push     noout
+               call     _printf
+               add      esp, 4
+               jmp      quit
+
+   printyes:
+               xor      eax, eax          ; zero out eax
+               mov      eax, [year]       ; eax is the year to investigate
+               and      eax, 0x0000FFFF   ; mask off upper two bytes of 32-bit
+               push     eax
+               push     yesout
+               call     _printf
+               add      esp, 4
+
+   quit:
+               pop      ebx
+               ret
+
+                  segment  .data
+   year:       dw       1900
+   yesout:     db       0x0A, '   %d IS a leap year', 0x0A, 0
+   yeslen      equ      $-yesout
+   noout:      db       0x0A, '   %d is NOT a leap year', 0x0A, 0
+   nolen       equ      $-noout

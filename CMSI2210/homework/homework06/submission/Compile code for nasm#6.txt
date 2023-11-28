@@ -1,0 +1,14 @@
+
+
+
+
+
+
+
+
+Qn.3
+
+nasm -fwin32 parity.asm -o parity.obj
+gcc parity.obj -lmingw32 -o parity.exe
+parity.exe
+Output= Parity bit for data byte 0b10101101 is 1

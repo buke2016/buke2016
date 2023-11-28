@@ -1,0 +1,11 @@
+Mac operation:
+
+nasm -f elf findGCD.asm
+gcc -m32 -o findGCD findGCD.o
+./findGCD
+
+Windows code execution:
+cd path\to\your\code
+nasm -f win32 findGCD.asm
+gcc -o findGCD findGCD.obj
+findGCD.exe

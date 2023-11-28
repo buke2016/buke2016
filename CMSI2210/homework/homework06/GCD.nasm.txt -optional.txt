@@ -1,0 +1,83 @@
+section .data
+
+prompt1: db "Enter first number: "
+prompt2: db "Enter second number: "
+gcdStr: db "The GCD is: "
+
+num1: dw 0
+num2: dw 0
+gcd: dw 0
+
+section .text
+
+global _start
+
+_start:
+
+; Read the first number from the keyboard
+mov ah, 0x09
+int 0x21
+mov num1, ax
+
+; Read the second number from the keyboard
+mov ah, 0x09
+int 0x21
+mov num2, ax
+
+; Calculate the GCD
+mov ax, num1
+mov bx, num2
+
+euclid:
+idiv bx
+cmp dx, 0
+jne euclid
+
+mov gcd, ax
+
+; Print the prompt for the first number
+mov ah, 0x09
+mov dx, offset prompt1
+int 0x21
+
+; Print the first number
+mov ah, 0x02
+mov al, byte ptr [num1]
+add al, '0'
+int 0x21
+
+; Print a newline
+mov ah, 0x09
+mov al, 0x0a
+int 0x21
+
+; Print the prompt for the second number
+mov ah, 0x09
+mov dx, offset prompt2
+int 0x21
+
+; Print the second number
+mov ah, 0x02
+mov al, byte ptr [num2]
+add al, '0'
+int 0x21
+
+; Print a newline
+mov ah, 0x09
+mov al, 0x0a
+int 0x21
+
+; Print the GCD
+mov ah, 0x09
+mov dx, offset gcdStr
+int 0x21
+
+; Print the GCD value
+mov ah, 0x02
+mov al, byte ptr [gcd]
+add al, '0'
+int 0x21
+
+; Exit the program
+mov ah, 0x4c
+int 0x21

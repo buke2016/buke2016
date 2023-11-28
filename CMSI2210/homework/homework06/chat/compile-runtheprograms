@@ -1,0 +1,13 @@
+# For findGCD.nasm
+nasm -f elf findGCD.nasm -o findGCD.o
+ld -m elf_i386 -s -o findGCD findGCD.o
+
+# For makeNBO.nasm
+nasm -f elf makeNBO.nasm -o makeNBO.o
+ld -m elf_i386 -s -o makeNBO makeNBO.o
+
+# Run the programs
+./findGCD
+./gcdFinder
+./makeNBO 123456
+./makeNBO.nasm

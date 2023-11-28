@@ -1,0 +1,15 @@
+Microsoft Windows [Version 10.0.22631.2715]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\bukep\AppData\Local\bin\NASM>cd C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork19-1116-wk11
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork19-1116-wk11>rename average.nasm.txt average.nasm
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork19-1116-wk11>nasm -fwin32 average.nasm
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork19-1116-wk11>gcc -m32 average.obj -o average.exe
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork19-1116-wk11>average 12 23 34 45 56
+34.000000000000000
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\classwork\classwork19-1116-wk11>

@@ -1,0 +1,45 @@
+_main:
+       pushsh        EBX            ; we have to save this since we use it
+
+         mov         ECX, 0x14      ; ecx will countdown from 20 to 0
+         xor         EAX, EAX       ; eax will hold the current number
+         xor         EBX, EBX       ; ebx will hold the next number
+         inc         EBX            ; ebx is originally 1
+
+         ; We need to call printf, but we are using eax, ebx, and ecx. printf may destroy these registers, so we will save and restore them carefully.
+         push        EAX            ; save EAX
+         push        ECX            ; save ECX
+
+         push        EAX            ; push EAX for the call to printf()
+         push        format         ; don't forget the format statement!
+         call        _printf        ; call the function from "C"
+         add         ESP, 8         ; restore the stack pointer
+
+         ; Now we generate the Fibonacci sequence
+         mov         EDX, EAX       ; save the current number
+         mov         EAX, EBX       ; next number is now current
+         add         EBX, EDX       ; get the new next number
+         dec         ECX            ; count down from 20
+         jnz         loop           ; if not done counting, do some more
+
+         pop         EBX            ; restore ebx before returning
+         ret
+
+format:  db '%10d', 0x00
+
+loop:
+         ; Generate the Fibonacci sequence
+         mov         EDX, EAX       ; save the current number
+         mov         EAX, EBX       ; next number is now current
+         add         EBX, EDX       ; get the new next number
+         dec         ECX            ; count down
+         jnz         loop           ; if not done counting, do some more
+
+         ; Print the sequence
+         mov         EDX, EAX       ; save the current number
+         mov         EAX, EBX       ; next number is now current
+         push        EAX            ; save the next number for the next iteration
+         push        EDX            ; push the current number
+         call        _printf        ; print the current number
+         add         ESP, 8         ; pop the numbers from the stack
+         jmp         loop           ; continue to the next iteration
