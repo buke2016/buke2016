@@ -1,0 +1,16 @@
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\homework\homework06\submission>nasm -f win32 parity.nasm -o parity.obj
+nasm: fatal: unable to open input file `parity.nasm' No such file or directory
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\homework\homework06\submission>nasm -f win32 paritygen.nasm -o paritygen.obj
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\homework\homework06\submission>gcc paritygen.obj -o paritygen
+c:/mingw/bin/../lib/gcc/mingw32/6.3.0/../../../libmingw32.a(main.o):(.text.startup+0xa0): undefined reference to `WinMain@16'
+collect2.exe: error: ld returned 1 exit status
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\homework\homework06\submission>gcc paritygen.obj -o paritygen -mconsole
+c:/mingw/bin/../lib/gcc/mingw32/6.3.0/../../../libmingw32.a(main.o):(.text.startup+0xa0): undefined reference to `WinMain@16'
+collect2.exe: error: ld returned 1 exit status
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\homework\homework06\submission>ld -m i386pe -s -o paritygen.exe paritygen.obj
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\homework\homework06\submission>
