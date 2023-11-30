@@ -1,0 +1,12 @@
+makeNBON compilation code
+
+nasm -f win32 makeNBON.nasm -o makeNBON.obj
+gcc makeNBON.obj makeNBOC.c -o makeNBON.exe
+
+Execution code in nasm
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\homework\homework06\submission>nasm -f win32 makeNBON.nasm -o makeNBON.obj
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\homework\homework06\submission>gcc makeNBON.obj makeNBOC.c -o makeNBON.exe
+
+C:\Users\bukep\Fall2023\buke2016-1\CMSI2210\homework\homework06\submission>
