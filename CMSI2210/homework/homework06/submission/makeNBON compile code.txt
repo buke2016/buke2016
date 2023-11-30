@@ -1,8 +1,63 @@
 nasm -f win32 makeNBON.nasm -o makeNBON.obj
 gcc makeNBON.obj makeNBO.c -o makeNBON.exe
+gcc makeNBON.obj makeNBO.c -o makeNBON.exe -lc
 makeNBON.exe
 
 
 
 nasm -f win32 your_filename.asm -o your_filename.obj
 gcc -m32 -o your_filename.exe your_filename.obj -lkernel32
+
+
+
+
+nasm -f win32 makeNBO.nasm -o makeNBO.obj
+nasm -f win32 makeNBON1.nasm -o makeNBON1.obj
+gcc -m32 -o makeNBON1.exe makeNBON1.obj makeNBO.obj makeNBON1.c -lkernel32
+
+
+
+
+
+bard
+nasm -fwin64 makeNBON.nasm -o makeNBON.obj
+ld makeNBON.obj -o makeNBON.exe mingw32
+
+
+Claude
+# Compile the C code with makeNBO function to object file
+gcc -c makeNBO.c -o makeNBO.obj
+
+# Assemble NASM code to object file  
+nasm -f win64 makeNBO.nasm -o makeNBO_nasm.obj 
+
+# Link the object files to an executable
+gcc makeNBO.obj makeNBO_nasm.obj -o makeNBO_test.exe
+
+
+# Compile C code to object file
+gcc -c makeNBO.c -o makeNBO.obj  
+
+# Assemble NASM code to object file
+nasm -f win32 makeclaude.nasm -o makeclaude_nasm.obj
+
+# Link BOTH object files AND standard C library
+gcc makeNBO.obj makeclaude_nasm.obj -o test.exe -lmsvcrt
+
+
+nasm -f win32 c:\nasm\makeclaude.nasm -o c:\nasm\makeclaude_nasm.obj
+
+gcc makeNBO.obj c:\nasm\makeclaude_nasm.obj -o test.exe -lmsvcrt
+
+
+Chat
+nasm -f win32 your_filename.nasm -o your_filename.obj
+gcc -m32 -o your_filename.exe your_filename.obj -lmsvcrt
+
+nasm -f win32 makeNBON.nasm -o makeNBON.obj
+gcc -m32 -o makeNBON.exe makeNBON.obj -lmsvcrt
+
+
+nasm -f win32 makechat_combined.asm -o makechat_combined.obj
+gcc -m32 -o makechat.exe makechat_combined.obj -lmsvcrt
+
