@@ -1,29 +1,24 @@
 section .data
-    input_values dd 0x12345678, 0xdeadbeef, 0xabcdef01, 0x87654321, 0xfaceb00c
-    output_msg db "Original number: 0x%x, Swapped number: 0x%x", 10, 0
+    input_values dd 12345678h, 87654321h, 11112222h, 33334444h, 55556666h  ; Different input values to test the function
 
 section .text
-    extern printf, makeNBO
     global _start
 
+extern makeNBO  ; Extern declaration of the C function
+
 _start:
-    mov ecx, 5  ; Number of times to call makeNBO
-    mov esi, input_values  ; Address of input values array
-call_makeNBO:
-    mov eax, [esi]  ; Load input value
-    push eax  ; Prepare argument for makeNBO
-    call makeNBO  ; Call makeNBO
-    add esp, 4  ; Clean up the stack
-    mov ebx, eax  ; Swapped number
-    mov eax, [esi]  ; Original number
-    push eax  ; Prepare original number for printing
-    push ebx  ; Prepare swapped number for printing
-    push output_msg  ; Format string
-    call printf  ; Print the numbers
-    add esp, 12  ; Clean up the stack
+    ; Call the C function makeNBO at least five times with different values to test it
+    mov ecx, 5  ; Number of times to call the function
+    mov esi, input_values  ; Address of the input values array
+
+.loop:
+    mov eax, [esi]  ; Load the input value into eax
+    call makeNBO  ; Call the C function
+    ; You can now use the swapped value in eax
     add esi, 4  ; Move to the next input value
-    loop call_makeNBO  ; Loop until ecx is zero
+    loop .loop  ; Repeat for the remaining values
 
     ; Exit the program
-    mov eax, 0  ; Syscall number for exit
-    int 0x80  ; Call the kernel
+    mov eax, 1  ; Exit system call number
+    xor ebx, ebx  ; Return 0 status
+    int 80h  ; Call the kernel
