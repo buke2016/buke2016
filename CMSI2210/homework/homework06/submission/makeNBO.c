@@ -12,6 +12,6 @@ int main(int argc, char *argv[]) {
     }
     uint32_t input = atoi(argv[1]);
     uint32_t result = makeNBO(input);
-    printf("Original number: %X\nSwapped number: %11X\n", input, result);
+    printf("Original number: 0x%x\nSwapped number: 0x%x\n", input, result);
     return 0;
 }

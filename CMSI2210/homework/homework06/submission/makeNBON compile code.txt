@@ -1,0 +1,8 @@
+nasm -f win32 makeNBON.nasm -o makeNBON.obj
+gcc makeNBON.obj makeNBO.c -o makeNBON.exe
+makeNBON.exe
+
+
+
+nasm -f win32 your_filename.asm -o your_filename.obj
+gcc -m32 -o your_filename.exe your_filename.obj -lkernel32
